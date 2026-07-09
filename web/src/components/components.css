@@ -1,0 +1,816 @@
+/*
+ * EntraShift component styles. Consumes tokens.css only — no hard-coded colors,
+ * spacing, or radii. Grouped by component. All interactive states follow §7.1.
+ */
+
+/* ==================================================================== *
+ * Button (§7.1) — variants; loading keeps label + inline spinner;
+ * disabled 50% opacity + not-allowed.
+ * ==================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 0 var(--space-4);
+  height: 36px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-input);
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-base);
+  line-height: 1;
+  white-space: nowrap;
+  transition:
+    background-color var(--motion-fast) var(--ease),
+    border-color var(--motion-fast) var(--ease),
+    color var(--motion-fast) var(--ease);
+  user-select: none;
+}
+.btn--sm {
+  height: 30px;
+  padding: 0 var(--space-3);
+  font-size: var(--fs-sm);
+}
+.btn--lg {
+  height: 44px;
+  padding: 0 var(--space-6);
+  font-size: var(--fs-md);
+}
+.btn--block {
+  width: 100%;
+}
+
+.btn--primary {
+  background: var(--color-primary);
+  color: var(--color-text-on-accent);
+}
+.btn--primary:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+}
+
+.btn--secondary {
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  border-color: var(--color-border-strong);
+}
+.btn--secondary:hover:not(:disabled) {
+  background: var(--color-surface-2);
+  border-color: var(--color-text-muted);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--color-text-secondary);
+}
+.btn--ghost:hover:not(:disabled) {
+  background: var(--color-surface-2);
+  color: var(--color-text-primary);
+}
+
+.btn--danger {
+  background: var(--color-error);
+  color: #fff;
+}
+.btn--danger:hover:not(:disabled) {
+  filter: brightness(0.92);
+}
+
+.btn:disabled,
+.btn[aria-disabled='true'] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn__spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: btn-spin 0.7s linear infinite;
+  flex: none;
+}
+@keyframes btn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn__spinner {
+    animation-duration: 1.5s;
+  }
+}
+
+/* ==================================================================== *
+ * Input (§7.3) — inline error crimson border + icon + text; mono for secrets.
+ * ==================================================================== */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.field__label {
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-sm);
+  color: var(--color-text-primary);
+}
+.field__label .field__req {
+  color: var(--color-error);
+  margin-left: 2px;
+}
+.field__hint {
+  font-size: var(--fs-xs);
+  color: var(--color-text-secondary);
+}
+.input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.input {
+  width: 100%;
+  height: 36px;
+  padding: 0 var(--space-3);
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-input);
+  transition: border-color var(--motion-fast) var(--ease);
+}
+.input::placeholder {
+  color: var(--color-text-muted);
+}
+.input:hover:not(:disabled) {
+  border-color: var(--color-text-muted);
+}
+.input:focus {
+  border-color: var(--color-primary);
+}
+.input--mono {
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+.input--has-icon {
+  padding-right: 38px;
+}
+.input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.input--error {
+  border-color: var(--color-error);
+}
+.input--error:focus {
+  border-color: var(--color-error);
+}
+.input__icon-btn {
+  position: absolute;
+  right: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  color: var(--color-text-secondary);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-input);
+}
+.input__icon-btn:hover {
+  color: var(--color-text-primary);
+  background: var(--color-surface-2);
+}
+.field__error {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-xs);
+  color: var(--color-error);
+}
+
+/* ==================================================================== *
+ * Card (§6.3) — 8px radius, elevation 1; dark = border.
+ * ==================================================================== */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--elevation-1);
+}
+.card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-6);
+  border-bottom: 1px solid var(--color-border);
+}
+.card__title {
+  font-size: var(--fs-md);
+  font-weight: var(--fw-bold);
+}
+.card__subtitle {
+  font-size: var(--fs-sm);
+  color: var(--color-text-secondary);
+  font-weight: var(--fw-regular);
+}
+.card__body {
+  padding: var(--space-6);
+}
+.card__body--flush {
+  padding: 0;
+}
+
+/* ==================================================================== *
+ * Badge (§6.3 pill) — functional-state colored, always icon + text (§9).
+ * ==================================================================== */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 22px;
+  padding: 0 var(--space-2);
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  line-height: 1;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+.badge--neutral {
+  background: var(--color-surface-2);
+  color: var(--color-text-secondary);
+  border-color: var(--color-border);
+}
+.badge--success {
+  background: var(--color-success-subtle);
+  color: var(--color-success);
+  border-color: color-mix(in srgb, var(--color-success) 30%, transparent);
+}
+.badge--warning {
+  background: var(--color-warning-subtle);
+  color: var(--color-warning);
+  border-color: color-mix(in srgb, var(--color-warning) 30%, transparent);
+}
+.badge--error {
+  background: var(--color-error-subtle);
+  color: var(--color-error);
+  border-color: color-mix(in srgb, var(--color-error) 30%, transparent);
+}
+.badge--info {
+  background: var(--color-info-subtle);
+  color: var(--color-primary);
+  border-color: color-mix(in srgb, var(--color-primary) 30%, transparent);
+}
+/* Indigo solid (e.g. delta-pass count) — white text on indigo is AA-safe. */
+.badge--indigo-solid {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+/* ==================================================================== *
+ * WorkloadPill (§5.2) — ACTIVE = Indigo fill white text. NEVER white-on-cyan.
+ * ==================================================================== */
+.workload-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-surface-2);
+  color: var(--color-text-secondary);
+  transition:
+    background-color var(--motion-fast) var(--ease),
+    color var(--motion-fast) var(--ease),
+    border-color var(--motion-fast) var(--ease);
+}
+button.workload-pill {
+  cursor: pointer;
+}
+button.workload-pill:hover:not(:disabled):not(.workload-pill--active) {
+  border-color: var(--color-text-muted);
+  color: var(--color-text-primary);
+}
+.workload-pill--active {
+  background: var(--color-primary); /* Entra Indigo fill */
+  color: #fff; /* white text — AA-safe on indigo */
+  border-color: var(--color-primary);
+}
+.workload-pill:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ==================================================================== *
+ * DataGrid (§5.2) — zebra, 8/12 padding, skeleton rows, horiz scroll <1024.
+ * ==================================================================== */
+.grid-scroll {
+  width: 100%;
+  overflow-x: auto; /* intact columns below 1024px (§6.2) */
+}
+.data-grid {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-sm);
+}
+.data-grid thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  text-align: left;
+  font-weight: var(--fw-medium);
+  color: var(--color-text-secondary);
+  background: var(--color-surface-2);
+  padding: var(--grid-cell-py) var(--grid-cell-px);
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+.data-grid tbody td {
+  padding: var(--grid-cell-py) var(--grid-cell-px);
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  vertical-align: middle;
+}
+/* Zebra striping: #FFFFFF / #F8FAFC (light), surface / surface-2 tokens. */
+.data-grid tbody tr:nth-child(odd) td {
+  background: var(--color-surface);
+}
+.data-grid tbody tr:nth-child(even) td {
+  background: var(--color-surface-2);
+}
+.data-grid tbody tr:hover td {
+  background: var(--color-primary-subtle);
+}
+.data-grid td.mono,
+.data-grid th.mono {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+}
+.data-grid .col-actions {
+  text-align: right;
+  white-space: nowrap;
+}
+.data-grid__skeleton {
+  height: 14px;
+  width: 100%;
+}
+
+/* ==================================================================== *
+ * ProgressBar (§5.3) — 6px track, Indigo→Cyan gradient fill, phase text.
+ * ==================================================================== */
+.progress {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.progress__track {
+  position: relative;
+  height: 6px;
+  width: 100%;
+  background: var(--progress-track);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+.progress__fill {
+  height: 100%;
+  background: var(--progress-fill);
+  border-radius: var(--radius-pill);
+  transition: width var(--motion-base) var(--ease);
+}
+/* Indeterminate (total unknown) — animated sweep, static under reduced motion. */
+.progress__fill--indeterminate {
+  width: 35% !important;
+  animation: progress-sweep 1.4s var(--ease) infinite;
+}
+@keyframes progress-sweep {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(320%);
+  }
+}
+.progress__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  font-size: var(--fs-xs);
+  color: var(--color-text-secondary);
+}
+.progress__phase {
+  font-weight: var(--fw-medium);
+  color: var(--color-text-primary);
+}
+[data-reduced-motion='true'] .progress__fill--indeterminate,
+[data-reduced-motion='true'] .progress__fill {
+  animation: none;
+  transition: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .progress__fill--indeterminate {
+    animation: none;
+    width: 100% !important;
+    opacity: 0.6;
+  }
+  .progress__fill {
+    transition: none;
+  }
+}
+
+/* ==================================================================== *
+ * Banner (§7.3) — 4px functional-state left border, icon + message.
+ * ==================================================================== */
+.banner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--color-border);
+  border-left-width: 4px;
+  background: var(--color-surface);
+}
+.banner__icon {
+  flex: none;
+  margin-top: 1px;
+}
+.banner__body {
+  flex: 1;
+  min-width: 0;
+}
+.banner__title {
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-base);
+}
+.banner__message {
+  font-size: var(--fs-sm);
+  color: var(--color-text-secondary);
+  margin-top: 2px;
+}
+.banner__actions {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+.banner--info {
+  border-left-color: var(--color-primary);
+  background: var(--color-info-subtle);
+}
+.banner--info .banner__icon {
+  color: var(--color-primary);
+}
+.banner--success {
+  border-left-color: var(--color-success);
+  background: var(--color-success-subtle);
+}
+.banner--success .banner__icon {
+  color: var(--color-success);
+}
+.banner--warning {
+  border-left-color: var(--color-warning);
+  background: var(--color-warning-subtle);
+}
+.banner--warning .banner__icon {
+  color: var(--color-warning);
+}
+.banner--error {
+  border-left-color: var(--color-error);
+  background: var(--color-error-subtle);
+}
+.banner--error .banner__icon {
+  color: var(--color-error);
+}
+.banner__close {
+  flex: none;
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  padding: 2px;
+  border-radius: var(--radius-input);
+}
+.banner__close:hover {
+  color: var(--color-text-primary);
+}
+
+/* ==================================================================== *
+ * Toast (§7.3) — bottom-right; success/info auto-dismiss 5s; errors persist.
+ * ==================================================================== */
+.toast-region {
+  position: fixed;
+  right: var(--space-6);
+  bottom: var(--space-6);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 360px;
+  max-width: calc(100vw - 2 * var(--space-6));
+}
+.toast {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left-width: 4px;
+  border-radius: var(--radius-card);
+  box-shadow: var(--elevation-2);
+  animation: toast-in var(--motion-base) var(--ease);
+}
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+.toast--success {
+  border-left-color: var(--color-success);
+}
+.toast--success .toast__icon {
+  color: var(--color-success);
+}
+.toast--info {
+  border-left-color: var(--color-primary);
+}
+.toast--info .toast__icon {
+  color: var(--color-primary);
+}
+.toast--error {
+  border-left-color: var(--color-error);
+}
+.toast--error .toast__icon {
+  color: var(--color-error);
+}
+.toast__icon {
+  flex: none;
+  margin-top: 1px;
+}
+.toast__body {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--fs-sm);
+}
+.toast__title {
+  font-weight: var(--fw-medium);
+  color: var(--color-text-primary);
+}
+.toast__msg {
+  color: var(--color-text-secondary);
+  margin-top: 2px;
+  word-break: break-word;
+}
+.toast__close {
+  flex: none;
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  padding: 2px;
+}
+.toast__close:hover {
+  color: var(--color-text-primary);
+}
+
+/* ==================================================================== *
+ * Modal (§6.3, §7.3) — 12px radius, elevation 3; destructive confirm.
+ * ==================================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: rgb(15 23 42 / 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+  animation: overlay-in var(--motion-fast) var(--ease);
+}
+@keyframes overlay-in {
+  from {
+    opacity: 0;
+  }
+}
+.modal {
+  width: 100%;
+  max-width: 520px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-modal);
+  box-shadow: var(--elevation-3);
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 2 * var(--space-12));
+}
+.modal--wide {
+  max-width: 720px;
+}
+.modal__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-6);
+  border-bottom: 1px solid var(--color-border);
+}
+.modal__title {
+  font-size: var(--fs-md);
+  font-weight: var(--fw-bold);
+  flex: 1;
+}
+.modal__body {
+  padding: var(--space-6);
+  overflow-y: auto;
+}
+.modal__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-6);
+  border-top: 1px solid var(--color-border);
+}
+.modal__consequence {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-error-subtle);
+  border: 1px solid color-mix(in srgb, var(--color-error) 30%, transparent);
+  border-radius: var(--radius-card);
+  color: var(--color-text-primary);
+  font-size: var(--fs-sm);
+  margin-bottom: var(--space-4);
+}
+
+/* ==================================================================== *
+ * EmptyState (§7.2) — 48px muted icon + one line + one action.
+ * ==================================================================== */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: var(--space-4);
+  padding: var(--space-16) var(--space-6);
+  color: var(--color-text-secondary);
+}
+.empty-state__icon {
+  color: var(--color-text-muted);
+}
+.empty-state__text {
+  font-size: var(--fs-md);
+  color: var(--color-text-secondary);
+  max-width: 42ch;
+}
+
+/* ==================================================================== *
+ * StatusCard (§5.1) — dual-state connected/disconnected.
+ * ==================================================================== */
+.status-card {
+  border-radius: var(--radius-card);
+  padding: var(--space-6);
+  background: var(--color-surface);
+  transition: border-color var(--motion-fast) var(--ease);
+}
+.status-card--disconnected {
+  border: 2px dashed var(--color-border); /* dotted/dashed Border Gray (§5.1) */
+}
+.status-card--connected {
+  border: 1px solid var(--color-primary); /* solid 1px Entra Indigo (§5.1) */
+}
+.status-card--error {
+  border: 1px solid var(--color-error);
+}
+.status-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+.status-card__role {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-md);
+}
+.status-card__meta {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-1) var(--space-3);
+  font-size: var(--fs-sm);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-3);
+}
+.status-card__meta dt {
+  color: var(--color-text-muted);
+}
+.status-card__meta dd {
+  color: var(--color-text-primary);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  word-break: break-all;
+}
+.status-card__empty {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  color: var(--color-text-secondary);
+  font-size: var(--fs-sm);
+}
+
+/* ==================================================================== *
+ * Consent checklist (Tenant Connections)
+ * ==================================================================== */
+.scope-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.scope-list li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: var(--fs-sm);
+}
+.scope-list li:last-child {
+  border-bottom: none;
+}
+.scope-list__scope {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+}
+.scope-list__purpose {
+  color: var(--color-text-muted);
+  font-size: var(--fs-xs);
+  margin-left: auto;
+}
+
+/* Sparkline (dashboard throughput) */
+.sparkline {
+  width: 100%;
+  height: 48px;
+  display: block;
+}
+
+/* Utility layout helpers */
+.stack {
+  display: flex;
+  flex-direction: column;
+}
+.row {
+  display: flex;
+  align-items: center;
+}
+.spread {
+  justify-content: space-between;
+}
+.wrap {
+  flex-wrap: wrap;
+}
+.gap-1 {
+  gap: var(--space-1);
+}
+.gap-2 {
+  gap: var(--space-2);
+}
+.gap-3 {
+  gap: var(--space-3);
+}
+.gap-4 {
+  gap: var(--space-4);
+}
+.gap-6 {
+  gap: var(--space-6);
+}
+.muted {
+  color: var(--color-text-secondary);
+}
+.text-xs {
+  font-size: var(--fs-xs);
+}
+.text-sm {
+  font-size: var(--fs-sm);
+}
+.grow {
+  flex: 1;
+  min-width: 0;
+}
+.checkbox-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+}
+.checkbox-row input {
+  margin-top: 2px;
+  accent-color: var(--color-primary);
+}

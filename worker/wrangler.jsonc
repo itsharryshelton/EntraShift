@@ -1,0 +1,66 @@
+{
+  // EntraShift control plane — Cloudflare Worker.
+  // All bindings must stay inside the Free Tier (SoW §1.1).
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "entrashift",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-01-01",
+  "compatibility_flags": ["nodejs_compat"],
+
+  // Serve the built React SPA (web/dist) as static assets; the Worker handles /api and /auth.
+  "assets": {
+    "directory": "../web/dist",
+    "binding": "ASSETS",
+    // SPA fallback so client-side routes resolve to index.html; API/auth handled by the Worker.
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*", "/auth/*"]
+  },
+
+  "observability": {
+    "enabled": true
+  },
+
+  // D1 — job state, mappings, audit log, budget counters.
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "entrashift",
+      "database_id": "REPLACE_WITH_D1_DATABASE_ID",
+      "migrations_dir": "migrations"
+    }
+  ],
+
+  // Queues — job dispatch ONLY (one small message per user+workload).
+  // The VM consumes via the Queues HTTP pull API using a scoped API token — NOT a
+  // Worker consumer binding — so no per-message Worker invocation is spent.
+  "queues": {
+    "producers": [
+      {
+        "binding": "JOB_QUEUE",
+        "queue": "entrashift-jobs"
+      }
+    ]
+  },
+
+  // Non-secret vars. Secrets (below) are set via `wrangler secret put`, never committed.
+  "vars": {
+    // ONE EntraShift Worker PER CUSTOMER — never mix customers in a single deployment.
+    // PROJECT_NAME is the customer/engagement label shown prominently across the UI so an
+    // engineer always knows which tenant pair this instance targets. Also give each customer
+    // deployment a distinct Worker `name` above (e.g. "entrashift-acme") + its own D1 database.
+    "PROJECT_NAME": "REPLACE_WITH_CUSTOMER_PROJECT_NAME",
+    "ENTRA_TENANT_ID": "REPLACE_WITH_MSP_TENANT_ID", // MSP tenant hosting the SSO app reg
+    "OIDC_CLIENT_ID": "REPLACE_WITH_UI_APP_CLIENT_ID",
+    "OIDC_REDIRECT_URI": "https://entrashift.example.com/auth/callback",
+    "ALLOWED_GROUP_ID": "REPLACE_WITH_MSP_SECURITY_GROUP_OBJECT_ID",
+    "SESSION_TTL_SECONDS": "28800", // 8h max
+    "MIN_POLL_INTERVAL_SEC": "30",
+    "CF_ACCESS_TEAM_DOMAIN": "https://REPLACE.cloudflareaccess.com",
+    "CF_ACCESS_AUD": "REPLACE_WITH_ACCESS_APP_AUD_TAG" // audience of the VM service-token app
+  }
+
+  // Secrets — set out-of-band, NEVER in this file or source:
+  //   wrangler secret put MASTER_ENCRYPTION_KEY   (base64 32-byte AES-256 key; envelope master)
+  //   wrangler secret put OIDC_CLIENT_SECRET       (UI app-registration client secret)
+  // See worker/README.md.
+}

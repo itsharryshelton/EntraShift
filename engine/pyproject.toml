@@ -1,0 +1,80 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "entrashift-engine"
+version = "0.1.0"
+description = "EntraShift M365 tenant-to-tenant migration engine (Azure VM compute plane). PROTOTYPE — pending security review."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Proprietary — internal prototype" }
+authors = [{ name = "EntraShift" }]
+
+dependencies = [
+    "httpx>=0.27",
+    "pydantic>=2.6",
+    "pydantic-settings>=2.2",
+    "tenacity>=8.2",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+# Azure Key Vault secrets provider (managed identity on the VM). Optional so the
+# engine can run in dev with the env-var fallback and no Azure SDK installed.
+azure = [
+    "azure-identity>=1.16",
+    "azure-keyvault-secrets>=4.8",
+]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "ruff>=0.4",
+    "mypy>=1.10",
+]
+
+[project.scripts]
+entrashift-engine = "entrashift_engine.__main__:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["entrashift_engine"]
+
+# --------------------------------------------------------------------------- #
+# Ruff — lint + format
+# --------------------------------------------------------------------------- #
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+src = ["entrashift_engine", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "ASYNC", "C4", "SIM", "RUF"]
+# BLE001 (blind except) is used deliberately in the resilient loop / redaction
+# paths where a failure must never crash the engine — silenced at call sites.
+ignore = ["B008"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]
+
+# --------------------------------------------------------------------------- #
+# mypy — strict-ish type checking
+# --------------------------------------------------------------------------- #
+[tool.mypy]
+python_version = "3.11"
+warn_unused_configs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+no_implicit_optional = true
+check_untyped_defs = true
+plugins = ["pydantic.mypy"]
+
+[[tool.mypy.overrides]]
+# Azure SDK is an optional dependency imported lazily; don't require stubs.
+module = ["azure.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="description"
+      content="EntraShift — secure Microsoft 365 tenant-to-tenant migration console. Prototype."
+    />
+    <!--
+      Fonts: Inter (UI/display) + JetBrains Mono (data/logs) per branding §4.
+      Loaded via @fontsource in src/main.tsx so the build is self-hosted (no CDN
+      dependency at runtime, better for an admin tool behind SSO). The theme is set
+      before paint below to avoid a flash of the wrong color scheme.
+    -->
+    <script>
+      // Set the persisted / preferred theme before first paint (no FOUC).
+      (function () {
+        try {
+          var stored = localStorage.getItem('entrashift.theme');
+          var prefersDark =
+            window.matchMedia &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var theme = stored || (prefersDark ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {
+          /* localStorage may be unavailable; default light stays. */
+        }
+      })();
+    </script>
+    <title>EntraShift Console</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

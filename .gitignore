@@ -1,0 +1,43 @@
+# --- Node / Worker / Web ---
+node_modules/
+dist/
+build/
+.wrangler/
+.dev.vars
+.dev.vars.*
+*.local
+.vite/
+coverage/
+
+# --- Python / Engine ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# --- Secrets / local state (NEVER commit) ---
+# Tenant secrets, master keys, service tokens, Graph tokens, downloaded password CSVs.
+*.env
+.env
+.env.*
+secrets/
+*.pem
+*.key
+*.pfx
+temp-passwords*.csv
+engine-logs/
+*.local.jsonc
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+scopeofwork.md
+.claude

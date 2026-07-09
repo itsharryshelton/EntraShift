@@ -1,0 +1,203 @@
+/*
+ * EntraShift design tokens — branding-guidelines.md §3, §6, §7.
+ *
+ * Every value here is defined by the brand spec. Do NOT introduce arbitrary
+ * colors, spacing, or radii in component CSS — consume these custom properties.
+ *
+ * Light is the default on :root; [data-theme="dark"] overrides the semantic
+ * layer only (raw brand hexes stay constant). The dark table is branding §6.4.
+ */
+
+:root {
+  /* -------------------------------------------------------------------- *
+   * Raw brand palette (§3) — constant across themes.
+   * -------------------------------------------------------------------- */
+  --brand-entra-indigo: #5046e5; /* core brand, primary CTAs, active states */
+  --brand-shift-cyan: #0ea5e9; /* data-path accent — NON-TEXT only (§5.2) */
+  --brand-console-slate: #0f172a; /* sidebar, dark bg, table headers */
+  --brand-canvas-gray: #f8fafc; /* light app background */
+  --brand-border-gray: #e2e8f0; /* borders, dividers */
+
+  /* Indigo ramp (hover/active steps, §7.1) */
+  --indigo-600: #5046e5;
+  --indigo-700: #4338ca; /* hover darken */
+  --indigo-400: #6366f1; /* dark-mode primary (lightened for contrast) */
+
+  /* Cyan ramp — Cyan 700 is the ONLY cyan permitted behind white text (§5.2) */
+  --cyan-500: #0ea5e9;
+  --cyan-700: #0369a1; /* AA-safe cyan text chip */
+  --cyan-400: #38bdf8; /* dark-mode accent */
+
+  /* Functional states (§3.3) — light */
+  --state-success: #10b981;
+  --state-warning: #f59e0b;
+  --state-error: #ef4444;
+
+  /* Slate ramp used by neutrals */
+  --slate-50: #f8fafc;
+  --slate-100: #f1f5f9;
+  --slate-200: #e2e8f0;
+  --slate-300: #cbd5e1;
+  --slate-400: #94a3b8;
+  --slate-500: #64748b;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --slate-800: #1e293b;
+  --slate-900: #0f172a;
+
+  /* -------------------------------------------------------------------- *
+   * Semantic tokens — LIGHT (§6.4 left column).
+   * -------------------------------------------------------------------- */
+  --color-bg: #f8fafc; /* Background */
+  --color-surface: #ffffff; /* Surface / card */
+  --color-surface-2: #f8fafc; /* zebra alt row / subtle inset (§5.2) */
+  --color-border: #e2e8f0; /* Border */
+  --color-border-strong: #cbd5e1;
+  --color-text-primary: #0f172a; /* Text primary */
+  --color-text-secondary: #475569; /* Text secondary */
+  --color-text-muted: #94a3b8;
+  --color-text-on-accent: #ffffff;
+
+  --color-primary: #5046e5; /* Primary action */
+  --color-primary-hover: #4338ca;
+  --color-primary-subtle: #eef2ff; /* indigo tint fill */
+  --color-accent: #0ea5e9; /* Accent (NON-TEXT) */
+  --color-accent-strong: #0369a1;
+
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-success-subtle: #ecfdf5;
+  --color-warning-subtle: #fffbeb;
+  --color-error-subtle: #fef2f2;
+  --color-info-subtle: #eff6ff;
+
+  /* Sidebar is always Console Slate, both themes (§3.2, §6.2). */
+  --color-sidebar-bg: #0f172a;
+  --color-sidebar-fg: #cbd5e1;
+  --color-sidebar-fg-muted: #64748b;
+  --color-sidebar-active-bg: #1e293b;
+  --color-sidebar-active-fg: #f1f5f9;
+  --color-sidebar-border: #1e293b;
+
+  /* Focus ring (§7.1): 2px indigo, 2px offset. */
+  --focus-ring: 0 0 0 2px var(--color-bg), 0 0 0 4px var(--brand-entra-indigo);
+  --focus-ring-color: var(--brand-entra-indigo);
+
+  /* Progress gradient (§5.3): Indigo → Cyan. */
+  --progress-track: #e2e8f0;
+  --progress-fill: linear-gradient(90deg, #5046e5 0%, #0ea5e9 100%);
+
+  /* -------------------------------------------------------------------- *
+   * Spacing scale (§6.1) — 4px base. No arbitrary values.
+   * -------------------------------------------------------------------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* Data-grid cell padding (§5.2 / §6.1): 8px vertical, 12px horizontal. */
+  --grid-cell-py: 8px;
+  --grid-cell-px: 12px;
+
+  /* Page gutters (§6.1) */
+  --gutter-desktop: 24px;
+  --gutter-narrow: 16px;
+
+  /* -------------------------------------------------------------------- *
+   * Radius (§6.3)
+   * -------------------------------------------------------------------- */
+  --radius-input: 6px; /* inputs & buttons */
+  --radius-card: 8px;
+  --radius-modal: 12px;
+  --radius-pill: 9999px;
+
+  /* -------------------------------------------------------------------- *
+   * Elevation (§6.3) — light mode shadows.
+   * -------------------------------------------------------------------- */
+  --elevation-1: 0 1px 2px rgb(15 23 42 / 0.06);
+  --elevation-2: 0 4px 12px rgb(15 23 42 / 0.1);
+  --elevation-3: 0 12px 32px rgb(15 23 42 / 0.18);
+
+  /* -------------------------------------------------------------------- *
+   * Typography (§4)
+   * -------------------------------------------------------------------- */
+  --font-sans:
+    'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, system-ui,
+    sans-serif;
+  --font-mono:
+    'JetBrains Mono', 'Fira Code', 'SFMono-Regular', ui-monospace, Menlo,
+    Consolas, monospace;
+
+  --fw-regular: 400; /* description text */
+  --fw-medium: 500; /* labels, table headings, menu */
+  --fw-bold: 700; /* titles, primary numbers */
+
+  --fs-xs: 12px; /* helper text, badges */
+  --fs-sm: 13px; /* table cells, secondary */
+  --fs-base: 14px; /* body default (dense admin UI) */
+  --fs-md: 16px;
+  --fs-lg: 20px; /* section titles */
+  --fs-xl: 24px; /* page titles */
+  --fs-2xl: 32px; /* big dashboard numbers */
+
+  --lh-tight: 1.25;
+  --lh-normal: 1.5;
+
+  /* Layout metrics (§6.2) */
+  --sidebar-width: 240px;
+  --sidebar-rail: 64px;
+  --content-max: 1440px;
+  --header-height: 56px;
+
+  /* Motion — disabled under prefers-reduced-motion (§9). */
+  --motion-fast: 120ms;
+  --motion-base: 200ms;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---------------------------------------------------------------------- *
+ * DARK theme (§6.4 right column). Sidebar tokens are intentionally NOT
+ * overridden — the sidebar is Console Slate in both themes. Dark mode
+ * replaces card shadows with 1px borders + slight surface lightening (§6.3).
+ * ---------------------------------------------------------------------- */
+[data-theme='dark'] {
+  --color-bg: #0f172a; /* Background */
+  --color-surface: #1e293b; /* Surface / card */
+  --color-surface-2: #172033; /* zebra alt row on dark */
+  --color-border: #334155; /* Border */
+  --color-border-strong: #475569;
+  --color-text-primary: #f1f5f9; /* Text primary */
+  --color-text-secondary: #94a3b8; /* Text secondary */
+  --color-text-muted: #64748b;
+  --color-text-on-accent: #ffffff;
+
+  --color-primary: #6366f1; /* lightened for dark surfaces */
+  --color-primary-hover: #818cf8;
+  --color-primary-subtle: #1e2148;
+  --color-accent: #38bdf8; /* Accent (non-text) */
+  --color-accent-strong: #0ea5e9;
+
+  --color-success: #34d399;
+  --color-warning: #fbbf24;
+  --color-error: #f87171;
+  --color-success-subtle: #0c2a22;
+  --color-warning-subtle: #2c2410;
+  --color-error-subtle: #2c1618;
+  --color-info-subtle: #0f2036;
+
+  /* Focus ring recomputed so the inner offset matches the dark background. */
+  --focus-ring: 0 0 0 2px var(--color-bg), 0 0 0 4px var(--brand-entra-indigo);
+
+  --progress-track: #334155;
+  --progress-fill: linear-gradient(90deg, #6366f1 0%, #38bdf8 100%);
+
+  /* Elevation → subtle borders + darker shadows (§6.3). */
+  --elevation-1: 0 0 0 1px #334155;
+  --elevation-2: 0 4px 12px rgb(0 0 0 / 0.4), 0 0 0 1px #334155;
+  --elevation-3: 0 12px 32px rgb(0 0 0 / 0.55), 0 0 0 1px #334155;
+}

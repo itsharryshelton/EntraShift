@@ -1,0 +1,26 @@
+{
+  "name": "entrashift-worker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "EntraShift control plane — Cloudflare Worker (Hono + D1 + Queues). PROTOTYPE pending security review.",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "cf-typegen": "wrangler types",
+    "db:migrate": "wrangler d1 migrations apply entrashift",
+    "db:migrate:remote": "wrangler d1 migrations apply entrashift --remote"
+  },
+  "dependencies": {
+    "hono": "^4.6.14"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260708.1",
+    "typescript": "^5.7.2",
+    "vitest": "^3.2.0",
+    "wrangler": "^4.0.0"
+  }
+}

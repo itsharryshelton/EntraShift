@@ -1,12 +1,5 @@
 # EntraShift — Security Model & Secret Handling
 
-Concise threat model, secret-handling summary, and the prototype/gate posture for EntraShift. Read
-alongside [scopeofwork.md](../scopeofwork.md) (Phase 0 in particular), [app-registrations.md](./app-registrations.md),
-and [deployment.md](./deployment.md).
-
-
----
-
 ## 1. Assets we protect
 
 | Asset                                             | Sensitivity           | Where it lives                                                                                 |

@@ -6,12 +6,12 @@
  * provisioning passwords are stored in D1 as ciphertext + IV only — never plaintext,
  * never returned to the browser, never logged.
  *
- * SECURITY NOTES (for the reviewer):
+ * SECURITY NOTES:
  *  - 12-byte random IV per encryption (GCM nonce). Never reuse an IV under the same key.
  *  - GCM auth tag is appended to the ciphertext by WebCrypto and verified on decrypt;
  *    a tampered ciphertext throws (integrity + confidentiality).
  *  - The master key is imported non-extractable so it cannot be exported from the isolate.
- *  - PROTOTYPE: key rotation re-encrypts on secret re-entry (there is no reveal path).
+ *  - Key rotation re-encrypts on secret re-entry (there is no reveal path).
  */
 
 import { ApiError } from './errors';

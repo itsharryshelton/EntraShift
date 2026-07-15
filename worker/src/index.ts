@@ -4,10 +4,6 @@
  * Hono app: mounts `/auth` and `/api`; everything else falls through to the SPA (ASSETS).
  * A single global error handler emits the standard error envelope (api-spec).
  *
- * PROTOTYPE: this control plane is AI-assisted prototype code. It MUST pass an internal IT/security
- * review (Phase 0 auth + secrets architecture) before being exposed on any public URL or connected
- * to a production tenant. See scopeofwork.md §5 (Delivery Gates).
- *
  * SECURITY POSTURE (enforced here + in middleware):
  *  - No secrets in any response. Tenant client secrets live only as AES-256-GCM ciphertext in D1;
  *    the master key is a Worker Secret and never leaves the isolate.

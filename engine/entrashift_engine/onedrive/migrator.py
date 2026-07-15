@@ -17,9 +17,8 @@ Flow per job (one user's OneDrive):
 Item-level failures are retried up to ``itemMaxRetries`` then skip-and-logged;
 they never fail the drive job. Latest version only (no version history).
 
-PROTOTYPE: metadata-preservation fidelity and conflict behaviour must be
-validated in Phase 1; the enumeration/upload/skip-and-log structure is the
-load-bearing part.
+Metadata-preservation fidelity and conflict behaviour must be validated in
+Phase 1; the enumeration/upload/skip-and-log structure is the load-bearing part.
 """
 
 from __future__ import annotations

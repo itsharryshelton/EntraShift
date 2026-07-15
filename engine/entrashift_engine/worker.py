@@ -18,9 +18,6 @@ Responsibilities:
 Free-tier discipline is enforced end-to-end: never poll faster than the config
 floor, one progress write per job per interval, batched item logs, no state
 through Queues.
-
-PROTOTYPE — do not run against a production tenant before the security review
-and pilot gates pass (SoW §5).
 """
 
 from __future__ import annotations

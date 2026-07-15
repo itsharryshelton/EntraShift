@@ -16,7 +16,6 @@ In production these live in **Azure Key Vault** and are read via the VM's
 
 SECURITY: values returned here are secrets. They are never logged (the logging
 setup redacts them defensively) and never written to disk by the engine.
-PROTOTYPE — the Key Vault wiring must be validated in the security review gate.
 """
 
 from __future__ import annotations

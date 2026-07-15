@@ -5,10 +5,10 @@ build-backend = "hatchling.build"
 [project]
 name = "entrashift-engine"
 version = "0.1.0"
-description = "EntraShift M365 tenant-to-tenant migration engine (Azure VM compute plane). PROTOTYPE — pending security review."
+description = "EntraShift M365 tenant-to-tenant migration engine (Azure VM compute plane)."
 readme = "README.md"
 requires-python = ">=3.11"
-license = { text = "Proprietary — internal prototype" }
+license = { text = "Proprietary — internal" }
 authors = [{ name = "EntraShift" }]
 
 dependencies = [

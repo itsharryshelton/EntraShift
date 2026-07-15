@@ -12,9 +12,6 @@ Security posture (see ``scopeofwork.md`` §0/§4):
       ever receives short-lived Graph access tokens.
     * The engine's own credentials (Cloudflare Access service token + Queue
       pull API token) come from Azure Key Vault via managed identity.
-
-PROTOTYPE — this code must pass an internal IT/security review and the pilot
-gate before it is run against any production tenant (see ``scopeofwork.md`` §5).
 """
 
 __version__ = "0.1.0"

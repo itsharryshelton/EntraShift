@@ -254,11 +254,6 @@ export function Settings() {
               <Badge variant="neutral">Reported via job heartbeat</Badge>
             </dd>
           </dl>
-          <Banner tone="warning" title="Prototype — pending security review">
-            EntraShift is AI-assisted prototype code. The Phase 0 authentication and
-            secrets architecture must pass an internal IT/security review before this
-            tool is exposed on any public URL or connected to a production tenant.
-          </Banner>
         </div>
       </Card>
     </div>

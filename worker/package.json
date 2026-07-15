@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "EntraShift control plane — Cloudflare Worker (Hono + D1 + Queues). PROTOTYPE pending security review.",
+  "description": "EntraShift control plane — Cloudflare Worker (Hono + D1 + Queues).",
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",

@@ -232,7 +232,7 @@ function ReportPanel({ migrationUserId }: { migrationUserId: string }) {
         caption={`Per-workload report for ${data.sourceEmail}`}
         emptyState={<EmptyState icon={FileBarChart2} message="No workload results recorded for this user." />}
       />
-      <p className="prototype-note" style={{ padding: 'var(--space-4) var(--space-6)' }}>
+      <p className="panel-note" style={{ padding: 'var(--space-4) var(--space-6)' }}>
         Skipped/failed items are recorded at item level (item ID, folder path, error
         class) via the engine's skip-and-log; a failed item never fails the whole
         job. Version history is not migrated (latest version only).

@@ -206,7 +206,7 @@ export async function provisionUser(accessToken: string, input: ProvisionInput):
 /**
  * Trigger OneDrive personal-site pre-provisioning. Reading the user's drive root causes SharePoint
  * to provision the site for a licensed user. Best-effort: a not-yet-licensed user returns an error
- * we swallow (the engine retries later). PROTOTYPE: for guaranteed pre-provisioning use the
+ * we swallow (the engine retries later). For guaranteed pre-provisioning use the
  * SharePoint Admin `SPHostedSharePointSitesRequest` endpoint — documented in the deployment guide.
  */
 export async function preProvisionOneDrive(accessToken: string, userId: string): Promise<boolean> {

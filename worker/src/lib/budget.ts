@@ -11,8 +11,7 @@
  * non-essential writes — BEFORE any real Cloudflare limit is hit. At 100% we hard-block
  * state-changing requests with `budget_exhausted`.
  *
- * This is prototype governance; a reviewer should confirm the thresholds against the live
- * Cloudflare account plan before production use.
+ * Confirm these thresholds against the live Cloudflare account plan before production use.
  */
 
 import type { EngineConfig, FreeTierBudget } from '@shared/contracts';

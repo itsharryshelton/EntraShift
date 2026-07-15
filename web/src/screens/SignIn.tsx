@@ -7,7 +7,7 @@
  * ID (OIDC Auth-Code + PKCE, handled by the Worker). This is a hard rule from
  * the org security policy and the SoW.
  */
-import { LogIn, ShieldCheck, Ban } from 'lucide-react';
+import { LogIn, ShieldCheck } from 'lucide-react';
 import { Icon } from '../components/Icon';
 import { Button } from '../components/Button';
 import { Banner } from '../components/Banner';
@@ -59,14 +59,6 @@ export function SignIn({ forbidden = false }: { forbidden?: boolean }) {
           <span>
             Single sign-on via Microsoft Entra ID (OAuth 2.0 Authorization Code +
             PKCE). No credentials are entered or stored here.
-          </span>
-        </div>
-
-        <div className="signin__security" style={{ color: 'var(--color-text-muted)' }}>
-          <Icon icon={Ban} size={16} />
-          <span>
-            Prototype build — pending internal IT/security review. Use against test
-            tenants only.
           </span>
         </div>
       </div>

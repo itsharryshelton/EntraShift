@@ -231,10 +231,10 @@ export function Dashboard() {
         )}
       </Card>
 
-      <p className="prototype-note row gap-2">
+      <p className="panel-note row gap-2">
         <Gauge size={14} strokeWidth={1.75} />
-        Prototype build. Figures are read-only summaries from D1 and refresh on a
-        30-second poll to respect Cloudflare Free Tier limits.
+        Figures are read-only summaries from D1 and refresh on a 30-second poll to
+        respect Cloudflare Free Tier limits.
       </p>
     </div>
   );

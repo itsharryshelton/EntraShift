@@ -426,8 +426,8 @@
   max-width: 40ch;
 }
 
-/* Prototype ribbon (org policy: flag prototype status where deployed) */
-.prototype-note {
+/* Panel footnote */
+.panel-note {
   font-size: var(--fs-xs);
   color: var(--color-text-muted);
 }

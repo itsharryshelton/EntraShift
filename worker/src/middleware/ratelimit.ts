@@ -2,7 +2,7 @@
  * Per-session request cap on UI endpoints (SoW §1.1 — explicit Worker rate limiting).
  *
  * Fixed-window counter kept in isolate memory (no D1 writes — keeping the limiter itself off the
- * D1 budget). PROTOTYPE caveat: Workers may run across multiple isolates, so this is a best-effort
+ * D1 budget). Workers may run across multiple isolates, so this is a best-effort
  * per-isolate cap, not a globally exact one; the D1 budget governor is the authoritative backstop.
  */
 

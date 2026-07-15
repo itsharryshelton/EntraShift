@@ -7,7 +7,7 @@
  *
  * Overage note: if the signed-in user is a member of too many groups, Entra emits a `_claim_names`
  * overage instead of an inline `groups` array and the membership must be resolved via Graph.
- * v1 (prototype) requires the group to appear inline; configure the app registration's
+ * v1 requires the group to appear inline; configure the app registration's
  * groupMembershipClaims to emit SecurityGroup and, for large directories, use a group-filtered
  * assignment so the claim never overflows. Document this in the deployment guide.
  */

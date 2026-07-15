@@ -242,7 +242,7 @@ export function AuditLog() {
         )}
       </Card>
 
-      <p className="prototype-note row gap-2">
+      <p className="panel-note row gap-2">
         <Icon icon={ScrollText} size={14} />
         The engine writes its own structured JSON-lines log on the VM (job
         lifecycle, throttling, item errors). This viewer shows only the

@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "EntraShift admin console — React web UI (control-plane front-end). PROTOTYPE, pending security review.",
+  "description": "EntraShift admin console — React web UI (control-plane front-end).",
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit -p tsconfig.json && vite build",

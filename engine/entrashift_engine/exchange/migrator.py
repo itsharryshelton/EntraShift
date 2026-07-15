@@ -18,10 +18,10 @@ Full and delta passes share the same code path; only the presence of stored
 delta tokens differs. Base64 item streams are treated as message content and
 are NEVER written to the logs.
 
-PROTOTYPE: the exact ``mailboxFolder`` create/childFolders shapes and the
-per-user mailbox resolution endpoint must be validated against live Graph
-during Phase 1 (they vary slightly by tenant configuration). The structure and
-throttling/skip-and-log behaviour are the load-bearing parts.
+The exact ``mailboxFolder`` create/childFolders shapes and the per-user mailbox
+resolution endpoint must be validated against live Graph during Phase 1 (they
+vary slightly by tenant configuration). The structure and throttling/skip-and-log
+behaviour are the load-bearing parts.
 """
 
 from __future__ import annotations
@@ -235,7 +235,7 @@ class ExchangeMigrator:
 
         display_name = src_folder.get("displayName", "Migrated")
         # Create as a child of the destination root folder collection. Folder
-        # hierarchy nesting beyond one level is a prototype simplification; the
+        # hierarchy nesting beyond one level is a simplification; the
         # parentFolderId chain should be honoured once validated in Phase 1.
         resp = await self._graph.request(
             "POST",

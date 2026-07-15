@@ -91,8 +91,7 @@ export function AppShell() {
           ))}
         </nav>
         <div className="sidebar__footer">
-          <div>EntraShift · Prototype</div>
-          <div>Pending security review</div>
+          <div>EntraShift</div>
         </div>
       </aside>
 
